@@ -15,10 +15,11 @@ def main(timer,limit,email):
     """
     try:
         mail_server = start_server()
-        from_mail,password = "username@gmail.com","password"
-        login(mail_server,from_mail,password)
+        from_email,password = "username@gmail.com","password"
+        login(mail_server,from_email,password)
         worksheet_instance = get_worksheet_api_service()
-        get_info(mail_server,worksheet_instance,timer,limit,from_mail,email)
+        get_info(mail_server,worksheet_instance,timer,limit,from_email,email)
+
     except Exception as e:
         print("Error : \n{}".format(e))
         return 1

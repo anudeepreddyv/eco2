@@ -43,5 +43,5 @@ def get_info(mail_server,new_sheet_instance,timer,limit,from_email,to_email):
         if  delta_time.total_seconds() >= timer:
             new_sheet_instance.append_row([end_time.strftime("%H:%M:%S"),sgp30.eCO2])
             start_time = end_time
-        if limit and sgp30.eCO2 >= limit:
-            send_message(mail_server,from_email,to_email,"ALERT : CO2 LEVEL HAS RISEN. Currently is at {} ppm.".format(sgp30.eCO2))
+        if sgp30.eCO2 >= limit:
+            send_message(mail_server,from_email,to_email,"\nALERT : CO2 LEVEL HAS RISEN. Currently is at {} ppm.".format(sgp30.eCO2))
