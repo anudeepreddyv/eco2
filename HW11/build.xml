@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="HW11" basedir="." default="run" >
+	<property environment="env" />
+	
+	
+	<echo message="JUNIT: ${env.JUNIT}"/>
+	<echo message="ANT_HOME: ${env.ANT_HOME}"/>
+	
+	<property name="src" location="src" />
+		<property name="bin" location="bin" />
+		
+	<path id="classpath">
+		<pathelement location="bin" />
+		
+		<fileset dir="${env.JUNIT}" includes=".jar" excludes="org.junit.vintage..jar" />
+		<fileset dir="${env.JUNIT}" includes="org.opentest4j*.jar"/>
+		<fileset dir="${env.JUNIT}" includes="org.apiguardian*.jar"/>
+		
+	</path>
+	<echo message="${toString:classpath}" />
+	   <target name="init">
+	      <mkdir dir="${bin}" />
+	    
+	   </target>
+	   <target name="compile" depends="init">
+	      <javac srcdir="${src}" destdir="${bin}" includeAntRuntime="no">
+	         <classpath refid="classpath" />
+	        
+	      </javac>
+	     
+	   </target>
+	   <target name="run" depends="compile">
+	   	<java classname="edu.umb.cs681.hw11.RequestHandler">
+	   			<classpath refid="classpath"></classpath>
+	   		</java>
+	   
+	      
+	   </target>
+	   <target name="clean" depends="run">
+	      <delete includeemptydirs="true">
+	         <fileset dir="${bin}/edu/umb/cs681/hw11" includes="*/" />
+	        
+	      </delete>
+	   </target>
+	</project>
